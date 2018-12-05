@@ -52,9 +52,9 @@ String RFID::readTag()
         str = getTag();
         }
       halt();
-  return str;
   }
   
+  return str;
 }
 
 /*
@@ -65,11 +65,18 @@ String RFID::getTag()
   String str = "";
   for(int i=0 ; i< 5 ; i++)
     {
-      str += String(serNum[i], HEX);
+      str += String(serNum[i], DEC);
     }
   return str;
 }
 
+
+/*
+* check if rfid is placed
+*/
+bool RFID::isPlaced(){
+    return isCard();
+}
 
 
 /*
@@ -79,7 +86,7 @@ void RFID::printTag(String tag)
 {
   if(tag != "None")
   {
-      Serial.print("YOUR RFID TAG: ");
+      Serial.print("TAG ID: ");
       Serial.println(tag);
   }
 }
@@ -120,8 +127,12 @@ void RFID::printTag(String tag)
 
 void RFID::init()
 {
-  SPI.begin();
+    pinMode(10, OUTPUT);
+    pinMode(6, OUTPUT);
+    digitalWrite(10, HIGH);
+    digitalWrite(6, LOW);
   digitalWrite(_NRSTPD,HIGH);
+  Serial.println(F("Innitialising RFID card"));
 
 	reset();
 	 	
@@ -139,6 +150,7 @@ void RFID::init()
 	//writeMFRC522(RFCfgReg, 0x7F);   	//RxGain = 48dB
 
 	antennaOn();		//Abre  la antena
+    Serial.println(F("Innitialising RFID finished"));
 	
 	
 }

@@ -18,7 +18,7 @@
 /******************************************************************************
  * Definitions
  ******************************************************************************/
-#define MAX_LEN 16   // Largo mï¿½ximo de la matriz
+#define MAX_LEN 10   // Largo mï¿½ximo de la matriz
 
 //MF522 comando palabra
 #define PCD_IDLE              0x00               // NO action; Y cancelar el comando
@@ -127,6 +127,7 @@ class RFID
 	
 	bool isCard();
 	bool readCardSerial();
+	bool isPlaced();
 	
     void init();
 	void reset();

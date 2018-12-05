@@ -3,10 +3,19 @@
 
 #include "Switchable.h"
 
+#define valveSelect 9
+#define RELAY_ONE 8
+#define RELAY_TWO 7
+
 //solenoid driver class:
-class SolenoidValve : public Switchable {
+class SolenoidValve {
     public:
-    SolenoidValve(const int pin) : Switchable(pin) {}
+        // Constructor
+        SolenoidValve();
+
+        void openValve();
+        void closeValve();
+        void finish();
 };
 
 #endif // _SOLENOID_VALVE_H_
